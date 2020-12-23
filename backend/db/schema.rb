@@ -42,11 +42,10 @@ ActiveRecord::Schema.define(version: 2020_12_17_145653) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "colors_sketches", id: false, force: :cascade do |t|
-    t.bigint "sketch_id", null: false
-    t.bigint "color_id", null: false
-    t.index ["color_id", "sketch_id"], name: "index_colors_sketches_on_color_id_and_sketch_id"
-    t.index ["sketch_id", "color_id"], name: "index_colors_sketches_on_sketch_id_and_color_id"
+  create_table "colors_sketches", force: :cascade do |t|
+    t.integer "sketch_id"
+    t.integer "color_id"
+    t.boolean "background_color"
   end
 
   create_table "sketches", force: :cascade do |t|

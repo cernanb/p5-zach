@@ -7,7 +7,9 @@ class Sketch < ApplicationRecord
     has_one_attached :image
     
     has_many :colors_sketches
-    has_many :colors, through: :colors_sketches
+    has_many :colors, through: :colors_sketches, source: :color
+
+    has_one :bg_color_sketch, -> {where background_color: true}, class_name: 'ColorsSketch'
     include Rails.application.routes.url_helpers
 
 
@@ -17,5 +19,8 @@ class Sketch < ApplicationRecord
         end
     end
 
+    def bg_color
+        bg_color_sketch.color
+    end
 
 end

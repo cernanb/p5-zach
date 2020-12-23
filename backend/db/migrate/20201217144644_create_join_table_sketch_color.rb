@@ -1,8 +1,9 @@
 class CreateJoinTableSketchColor < ActiveRecord::Migration[5.2]
   def change
-    create_join_table :sketches, :colors do |t|
-      t.index [:sketch_id, :color_id]
-      t.index [:color_id, :sketch_id]
+    create_table :colors_sketches do |t|
+      t.integer :sketch_id
+      t.integer :color_id
+      t.boolean :background_color
     end
   end
 end
